@@ -11,4 +11,9 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+    <ShellContent
+        Title="Logout"
+        ContentTemplate="{DataTemplate local:LogOutPage}"
+        Route="LogOutPage" />
+
 </Shell>

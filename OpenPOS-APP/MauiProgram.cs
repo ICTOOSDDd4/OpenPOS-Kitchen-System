@@ -30,7 +30,6 @@ public static class MauiProgram
 	      builder.Configuration.AddConfiguration(config);
 	      
 	      // Use Add Transient to add the configuration to the right page.
-	      builder.Services.AddTransient<MainPage>();
       }
       
 #if DEBUG
