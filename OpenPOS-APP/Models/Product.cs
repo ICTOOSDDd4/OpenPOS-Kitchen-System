@@ -6,13 +6,15 @@
         public string Name { get; set; }
         public double Price { get; set; }
         public string Description { get; set; }
+        public string ImagePath { get; set; }
         public Product() { }
-        public Product(int id, string name, double price, string description)
+        public Product(int id, string name, double price, string description, String imagePath)
         {
             Id = id;
             Name = name;
             Price = price;
             Description = description;
+            ImagePath = imagePath;
         }
     }
 }
