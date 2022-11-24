@@ -1,50 +1,60 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="OpenPOS_APP.RealisatieMenu" Padding="10"
-             BackgroundColor="White">
+             x:Class="OpenPOS_APP.RealisatieMenu"
+             Title="Menu"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False">
+
+    <HorizontalStackLayout VerticalOptions="Start" Margin="30, 30, 0, 0">
 
         <ListView x:Name="RealisatieMenuItems"
-              ItemsSource="{Binding ProductList}"
-              WidthRequest="450"
-              HeightRequest="600">
+                  ItemsSource="{Binding ProductList}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                        <HorizontalStackLayout>
-                            <Image Grid.RowSpan="2"
-                               Source="Spaghetti.png"
-                               Aspect="AspectFit"
-                               HeightRequest="120"
-                               WidthRequest="120"/>
-                        </HorizontalStackLayout>
-                        <VerticalStackLayout>
-                            <Label Grid.Column="0"
-                               Text="{Binding Name}"
-                               FontAttributes="Italic"
-                               HorizontalOptions="Center"
-                               TextColor="Black"/>
-                            <Label Grid.Row="1"
-                               Grid.Column="1"
-                               Text="{Binding Description}"
-                               FontAttributes="Italic"
-                               HorizontalOptions="Center"
+                        <ScrollView>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="175" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150" />
+                                </Grid.ColumnDefinitions>
+                                <VerticalStackLayout BackgroundColor="LightGrey">
+                                    <Image Grid.RowSpan="1"
+                                   Source="{Binding ImagePath}"
+                                   Aspect="AspectFit"
+                                   HeightRequest="120"
+                                   WidthRequest="120" />
+                                    <Label Grid.Column="1"
+                                   Text="{Binding Name}"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start"
+                                   WidthRequest="460"
                                    TextColor="Black"/>
-                        </VerticalStackLayout>
-                    </Grid>
+                                    <Label 
+                                   Grid.Column="1"
+                                   Text="{Binding Description}"
+                                   VerticalOptions="Center"
+                                   HorizontalTextAlignment="Start"
+                                   FontAttributes="Italic"
+                                   WidthRequest="460"
+                                   TextColor="Black"/>
+                                    <Label 
+                                   Grid.Column="1"
+                                   Text="{Binding Price, StringFormat='€{0}'}"
+                                   VerticalOptions="End"
+                                   HorizontalTextAlignment="Start"
+                                   WidthRequest="460"
+                                   TextColor="Black"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </ScrollView>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-
         </ListView>
 
+    </HorizontalStackLayout>
 </ContentPage>
