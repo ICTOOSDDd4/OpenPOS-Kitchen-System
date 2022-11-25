@@ -45,7 +45,7 @@ public partial class LoginScreen : ContentPage
    {
       if (UserAuth(_username, _password))
       {
-         await Shell.Current.GoToAsync(nameof(MenuPage));
+         await Shell.Current.GoToAsync(nameof(OrderOverviewpage));
 
          // If you want to save the user inputs when they press the back button
          // Remove this block of code.

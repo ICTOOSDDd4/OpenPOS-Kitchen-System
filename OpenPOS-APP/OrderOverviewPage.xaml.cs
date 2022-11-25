@@ -3,12 +3,12 @@ using OpenPOS_APP.Services.Models;
 
 namespace OpenPOS_APP;
 
-public partial class MenuPage : ContentPage
+public partial class OrderOverviewpage : ContentPage
 {
 	public List<Product> Products { get; set; }
 	public List<Product> SelectedProducts { get; set; }
 	private HorizontalStackLayout HorizontalLayout;
-	public MenuPage()
+	public OrderOverviewpage()
 	{
 		Order getOrder = OrderService.FindByID(59);
 		Products = ProductService.GetAll();
@@ -28,18 +28,11 @@ public partial class MenuPage : ContentPage
       {
 			AddHorizontalLayout();
       }
-      ProductView productView = new ProductView();
-		productView.SetProductValues(this,product);
-      HorizontalLayout.Add(productView);
+      
 	}
 
 	private void AddHorizontalLayout()
 	{
-      HorizontalStackLayout hLayout = new HorizontalStackLayout();
-		hLayout.Spacing = 20;
-		hLayout.Margin = new Thickness(10);
-		MainVerticalLayout.Add(hLayout);
-		HorizontalLayout = hLayout;
    }
 	
 	

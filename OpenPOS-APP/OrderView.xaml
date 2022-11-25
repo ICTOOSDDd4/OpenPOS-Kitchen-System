@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OpenPOS_APP.OrderView"
+             Title="OrderView">
+    <VerticalStackLayout
+       x:Name="MainVerticalLayout"
+        WidthRequest="200"
+        BackgroundColor="{ StaticResource White }"
+        >
+        <VerticalStackLayout
+            BackgroundColor="{ StaticResource OpenPos-Blue }"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            >
+            <Label 
+            x:Name="OrderNUmber"
+            Text="Order #Number"
+            FontSize="20"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontFamily="LeagueSpartan-SemiBold"
+            TextColor="Black"
+            />
+            <Label
+            x:Name="TableNumber"
+            Text="Table: #Number"
+            FontSize="15"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            FontFamily="LeagueSpartan-Regulars"
+            TextColor="Black"
+            />
+        </VerticalStackLayout>
+        
+        <VerticalStackLayout
+            x:Name="OrderLinesLayout"
+            >
+        </VerticalStackLayout>
+
+        <HorizontalStackLayout
+            HorizontalOptions="EndAndExpand"
+            VerticalOptions="End"
+            >
+            <Button
+                HorizontalOptions="Fill"
+                Text="Done"
+                WidthRequest="100"
+                CornerRadius="0"
+                Clicked="OnClickedDone"
+                TextColor="Black"
+                BackgroundColor="{ StaticResource OpenPos-Green}"
+                    />
+            <Button
+                Text="Cancel"
+                Clicked="OnClickedCancel"
+                CornerRadius="0"
+                x:Name="CancelButton"
+                WidthRequest="100"
+                TextColor="Black"
+                IsVisible="true"
+                HorizontalOptions="Fill"
+                BackgroundColor="{ StaticResource DeleteRed }"
+            />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

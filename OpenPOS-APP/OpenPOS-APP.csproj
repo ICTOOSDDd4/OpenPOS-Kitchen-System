@@ -76,7 +76,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="OrderOverviewPage.xaml.cs">
+	    <DependentUpon>OrderOverviewPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="CheckoutItemCardView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="OrderView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ProductView.xaml">

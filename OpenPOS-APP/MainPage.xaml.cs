@@ -24,6 +24,11 @@ public partial class MainPage : ContentPage
 
 	private async void OnLoginButtonClicked(object sender, EventArgs e)
 	{
+      for (int i = 0; i < 100; i++)
+      {
+         Table t = new Table(i, i+1, null, 1);
+         TableService.Create(t);
+      }
       await Shell.Current.GoToAsync(nameof(LoginScreen));
    }
 

@@ -34,7 +34,6 @@
                     HorizontalTextAlignment="Center"
                     TextColor="Black"
                     x:Name="AmountCount"
-                    PropertyChanged="AmountCount_PropertyChanged"
                     Text="{ Binding Amount }"/>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
@@ -80,13 +79,11 @@
                 Text="Add"
                 WidthRequest="65"
                 CornerRadius="0"
-                Clicked="OnClickedToevoegen"
                 TextColor="Black"
                 BackgroundColor="{ StaticResource OpenPos-Green}"
                     />
             <Button
                 Text="Info"
-                Clicked="OnClickedInfo"
                 CornerRadius="0"
                 x:Name="InfoButton"
                 TextColor="Black"
@@ -97,7 +94,6 @@
             />
             <Button
                 Text="Delete"
-                Clicked="OnClickedVerwijderen"
                 CornerRadius="0"
                 x:Name="DeleteButton"
                 WidthRequest="65"

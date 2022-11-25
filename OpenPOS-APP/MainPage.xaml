@@ -30,7 +30,7 @@
 
         <Button
             x:Name="MainLoginButton"
-            Text="START YOUR EXPERIENCE"
+            Text="LETS START OUR SHIFT!"
             SemanticProperties.Hint="Press to login"
             Clicked="OnLoginButtonClicked"
             HorizontalOptions="Center"

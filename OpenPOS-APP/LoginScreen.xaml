@@ -22,7 +22,7 @@
                 HorizontalOptions="Center"/>
 
             <Label
-                Text="Login to get access to your OpenPOS Experience"
+                Text="Login to get access to your OpenPOS - Kitchen Experience"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="The way to access your OpenPOS Experience"
                 TextColor="Black"
