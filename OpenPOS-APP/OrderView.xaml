@@ -36,6 +36,10 @@
         <VerticalStackLayout
             x:Name="OrderLinesLayout"
             >
+            <HorizontalStackLayout>
+                <Label/>
+                <Label/>
+            </HorizontalStackLayout>
         </VerticalStackLayout>
 
         <HorizontalStackLayout

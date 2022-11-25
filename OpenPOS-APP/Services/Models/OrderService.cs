@@ -14,6 +14,15 @@ public class OrderService : IModelService<Order>
         return resultList;
     }
 
+    public static List<Order> GetAllOpenOrders()
+    {
+      SqlCommand query = new SqlCommand("SELECT * FROM [dbo].[Order] WHERE [status] = @status");
+      query.Parameters.Add("@status", SqlDbType.TinyInt);
+      query.Parameters["@status"].Value = false;
+
+      return DatabaseService.Execute<Order>(query);
+   }
+
     public static Order FindByID(int id)
     {
         SqlCommand query = new SqlCommand("SELECT * FROM [dbo].[Order] WHERE [Id] = @ID");

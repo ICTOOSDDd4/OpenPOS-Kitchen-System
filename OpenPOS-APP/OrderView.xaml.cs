@@ -6,7 +6,9 @@ namespace OpenPOS_APP;
 
 public partial class OrderView : ContentPage
 {
-   private Order _order;
+   public Order order;
+   public event EventHandler OrderDone;
+   public event EventHandler OrderCanceled;
 	public OrderView()
 	{
 		InitializeComponent();
@@ -20,30 +22,46 @@ public partial class OrderView : ContentPage
 
    private void OnClickedDone(object sender, EventArgs e)
    {
-
+      OrderDone.Invoke(this, e);
    }
 
    private void OnClickedCancel(object sender, EventArgs e)
    {
-
+      OrderCanceled.Invoke(this, e);
    }
 
    public void BindOrder(Order order)
    {
-      _order = order;
-      OrderNUmber.Text = $"Order: {_order.Id}";
-      Bill bill = BillService.FindByID(_order.Bill_id);
-      //TableNumber.Text = $"Table: {_order.}
+      order = order;
+      OrderNUmber.Text = $"Order: {order.Id}";
+      Table table = TableService.FindByBill(order.Bill_id);
+      TableNumber.Text = $"Table: {table.Table_number}";
+      AddOrderLinesToLayout();
    }
 
    private void AddOrderLinesToLayout()
    {
-      foreach(OrderLine line in _order.Lines) 
+      foreach(OrderLine line in order.Lines) 
       {
+         // Setting up layout
+         HorizontalStackLayout layout = new HorizontalStackLayout();
+         layout.VerticalOptions = LayoutOptions.Center;
+         layout.HorizontalOptions = LayoutOptions.Center;
+         layout.Spacing = 10;
+
+         // Adding product
          Product product = ProductService.FindByID(line.Product_id);
-         Label label = new Label();
-         label.Text = product.Name;
-         OrderLinesLayout.Add(label);
+         Label productLabel = new Label();
+         productLabel.Text = product.Name;
+         layout.Add(productLabel);
+
+         // Adding amount
+         Label amountLabel = new Label();
+         amountLabel.Text = $"{ line.Amount }";
+         layout.Add(amountLabel);
+
+         // Adding layout to main layout.
+         OrderLinesLayout.Add(layout);
       }
    }
 
