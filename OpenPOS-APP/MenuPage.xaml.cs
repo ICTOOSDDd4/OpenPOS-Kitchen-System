@@ -10,6 +10,7 @@ public partial class MenuPage : ContentPage
 	private HorizontalStackLayout HorizontalLayout;
 	public MenuPage()
 	{
+		Order getOrder = OrderService.FindByID(59);
 		Products = ProductService.GetAll();
 		InitializeComponent();
 		SelectedProducts = new List<Product>();
