@@ -30,9 +30,9 @@ public partial class OrderView : ContentPage
       OrderCanceled.Invoke(this, e);
    }
 
-   public void BindOrder(Order order)
+   public void BindOrder(Order o)
    {
-      order = order;
+      order = o;
       OrderNUmber.Text = $"Order: {order.Id}";
       Table table = TableService.FindByBill(order.Bill_id);
       TableNumber.Text = $"Table: {table.Table_number}";
@@ -41,7 +41,7 @@ public partial class OrderView : ContentPage
 
    private void AddOrderLinesToLayout()
    {
-      foreach(OrderLine line in order.Lines) 
+      foreach(OrderLine line in order.GetLines(order.Id)) 
       {
          // Setting up layout
          HorizontalStackLayout layout = new HorizontalStackLayout();

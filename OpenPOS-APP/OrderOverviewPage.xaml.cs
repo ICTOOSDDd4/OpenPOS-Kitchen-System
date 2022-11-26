@@ -23,7 +23,7 @@ public partial class OrderOverviewpage : ContentPage
 	{
 		OrderView view = (OrderView)sender;
 		Order order = view.order;
-		order.Status = false;
+		order.Status = null;
 		OrderService.Update(order);
 	}
 
@@ -36,15 +36,25 @@ public partial class OrderOverviewpage : ContentPage
    }
 	public void AddProductToLayout(Order order)
 	{
+		
       if (HorizontalLayout == null || HorizontalLayout.Children.Count % 8 == 0)
       {
 			AddHorizontalLayout();
       }
+
+		OrderView orderview = new OrderView();
+		orderview.BindOrder(order);
+		HorizontalLayout.Add(orderview);
       
 	}
 
 	private void AddHorizontalLayout()
 	{
+      HorizontalStackLayout hLayout = new HorizontalStackLayout();
+      hLayout.Spacing = 20;
+      hLayout.Margin = new Thickness(10);
+      MainVerticalLayout.Add(hLayout);
+      HorizontalLayout = hLayout;
    }
 	
 	

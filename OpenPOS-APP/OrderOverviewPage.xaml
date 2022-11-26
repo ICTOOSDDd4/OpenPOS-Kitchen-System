@@ -3,9 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OpenPOS_APP.OrderOverviewpage"
              Title="OrderOverviewpage">
-    <VerticalStackLayout
+    <VerticalStackLayout>
+        <VerticalStackLayout
         HorizontalOptions="Center"
         x:Name="MainVerticalLayout">
+
+        </VerticalStackLayout>
         <Button
             x:Name="OrderButton"
             Text="Refresh"
@@ -14,6 +17,5 @@
             FontSize="35"
             Padding="0,0,10,0"
             />
-
     </VerticalStackLayout>
 </ContentPage>
