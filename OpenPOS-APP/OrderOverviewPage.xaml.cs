@@ -7,19 +7,38 @@ public partial class OrderOverviewpage : ContentPage
 {
 	public List<Order> Orders { get; set; }
 	private HorizontalStackLayout HorizontalLayout;
-	public OrderOverviewpage()
+   HorizontalStackLayout Layout;
+
+   private bool _isInitialized;
+   private double _width;
+
+   public OrderOverviewpage()
 	{
-		Orders = OrderService.GetAllOpenOrders();
 		InitializeComponent();
+      Orders = OrderService.GetAllOpenOrders();
 
-		for (int i = 0; i < Orders.Count; i++)
-		{
-			AddProductToLayout(Orders[i]);
-		}
-		
-	}
+   }
 
-	private void OrderCanceled(object sender, EventArgs e)
+   protected override void OnSizeAllocated(double width, double height)
+   {
+      base.OnSizeAllocated(width, height);
+      if (!_isInitialized)
+      {
+         _isInitialized = true;
+         SetWindowScaling(width, height);
+      }
+
+   }
+
+   private void SetWindowScaling(double width, double height)
+   {
+      ScrView.HeightRequest = height - 300;
+      _width = width;
+      AddAllOrders();
+
+   }
+
+   private void OrderCanceled(object sender, EventArgs e)
 	{
 		OrderView view = (OrderView)sender;
 		Order order = view.order;
@@ -34,18 +53,32 @@ public partial class OrderOverviewpage : ContentPage
       order.Status = true;
       OrderService.Update(order);
    }
-	public void AddProductToLayout(Order order)
+
+   private async void ClickedRefresh(object sender, EventArgs e)
+   {
+      await Shell.Current.GoToAsync(nameof(OrderOverviewpage));
+   }
+
+
+   private void AddAllOrders()
+   {
+      for (int i = 0; i < Orders.Count; i++)
+      {
+         AddOrderToLayout(Orders[i]);
+      }
+   }
+
+	public void AddOrderToLayout(Order order)
 	{
-		
-      if (HorizontalLayout == null || HorizontalLayout.Children.Count % 8 == 0)
+      int moduloNumber = ((int)_width / 300);
+      if (HorizontalLayout == null || HorizontalLayout.Children.Count % moduloNumber == 0)
       {
 			AddHorizontalLayout();
       }
 
 		OrderView orderview = new OrderView();
 		orderview.BindOrder(order);
-		HorizontalLayout.Add(orderview);
-      
+      HorizontalLayout.Add(orderview);      
 	}
 
 	private void AddHorizontalLayout()

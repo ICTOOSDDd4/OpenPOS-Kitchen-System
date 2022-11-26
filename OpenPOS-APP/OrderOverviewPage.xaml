@@ -2,13 +2,23 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OpenPOS_APP.OrderOverviewpage"
+             Shell.NavBarIsVisible="False"
              Title="OrderOverviewpage">
     <VerticalStackLayout>
-        <VerticalStackLayout
-        HorizontalOptions="Center"
-        x:Name="MainVerticalLayout">
+        <ScrollView
+            x:Name="ScrView"
+            Orientation="Vertical"
+            VerticalScrollBarVisibility="Always"
+            VerticalOptions="FillAndExpand"
+            HeightRequest="900"
+            >
 
-        </VerticalStackLayout>
+            <VerticalStackLayout
+            HorizontalOptions="Center"
+            x:Name="MainVerticalLayout">
+
+            </VerticalStackLayout>
+        </ScrollView>
         <Button
             x:Name="OrderButton"
             Text="Refresh"
