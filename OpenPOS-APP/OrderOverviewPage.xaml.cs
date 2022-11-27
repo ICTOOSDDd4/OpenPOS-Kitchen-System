@@ -1,5 +1,6 @@
 using OpenPOS_APP.Models;
 using OpenPOS_APP.Services.Models;
+using System.Runtime.CompilerServices;
 
 namespace OpenPOS_APP;
 
@@ -7,7 +8,6 @@ public partial class OrderOverviewpage : ContentPage
 {
 	public List<Order> Orders { get; set; }
 	private HorizontalStackLayout HorizontalLayout;
-   HorizontalStackLayout Layout;
 
    private bool _isInitialized;
    private double _width;
@@ -44,14 +44,21 @@ public partial class OrderOverviewpage : ContentPage
 		Order order = view.order;
 		order.Status = null;
 		OrderService.Update(order);
-	}
+      DeleteView(view);
+   }
 
-	private void OrderDone(object sender, EventArgs e)
+   private void OrderDone(object sender, EventArgs e)
 	{
       OrderView view = (OrderView)sender;
       Order order = view.order;
       order.Status = true;
       OrderService.Update(order);
+      DeleteView(view);
+   }
+
+   private void DeleteView(OrderView view)
+   {
+      view.layout.Children.Remove(view);
    }
 
    private async void ClickedRefresh(object sender, EventArgs e)
@@ -77,7 +84,9 @@ public partial class OrderOverviewpage : ContentPage
       }
 
 		OrderView orderview = new OrderView();
-		orderview.BindOrder(order);
+		orderview.AddBinds(order, HorizontalLayout);
+      orderview.OrderDone += OrderDone;
+      orderview.OrderCanceled += OrderCanceled;
       HorizontalLayout.Add(orderview);      
 	}
 

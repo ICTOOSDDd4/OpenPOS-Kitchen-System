@@ -4,9 +4,10 @@ using OpenPOS_APP.Services.Models;
 
 namespace OpenPOS_APP;
 
-public partial class OrderView : ContentPage
+public partial class OrderView : ContentView
 {
    public Order order;
+   public HorizontalStackLayout layout;
    public event EventHandler OrderDone;
    public event EventHandler OrderCanceled;
 	public OrderView()
@@ -30,9 +31,10 @@ public partial class OrderView : ContentPage
       OrderCanceled.Invoke(this, e);
    }
 
-   public void BindOrder(Order o)
+   public void AddBinds(Order o, HorizontalStackLayout h)
    {
       order = o;
+      layout = h;
       OrderNUmber.Text = $"Order: {order.Id}";
       Table table = TableService.FindByBill(order.Bill_id);
       TableNumber.Text = $"Table: {table.Table_number}";
@@ -48,6 +50,7 @@ public partial class OrderView : ContentPage
          layout.VerticalOptions = LayoutOptions.Center;
          layout.HorizontalOptions = LayoutOptions.Center;
          layout.Spacing = 10;
+         layout.Margin = new Thickness(2);
 
          // Adding product
          Product product = ProductService.FindByID(line.Product_id);
