@@ -53,9 +53,8 @@ public partial class OrderView : ContentView
          layout.Margin = new Thickness(2);
 
          // Adding product
-         Product product = ProductService.FindByID(line.Product_id);
          Label productLabel = new Label();
-         productLabel.Text = product.Name;
+         productLabel.Text = line.Name;
          layout.Add(productLabel);
 
          // Adding amount
